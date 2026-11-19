@@ -4,10 +4,14 @@ const crypto = require('crypto');
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const { Course, Enquiry } = require('./models');
 
 const app = express();
+app.use(cors({
+  origin: 'https://qspider-admin.vercel.app'
+}));
 app.use(helmet({ contentSecurityPolicy: false })); // frontend uses inline script/style
 app.use(express.json({ limit: '10kb' }));
 const dist = path.join(__dirname, '..', 'client', 'dist');
