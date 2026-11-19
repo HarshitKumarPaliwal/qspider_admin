@@ -5,7 +5,9 @@ const handle = async (r) => {
 };
 const H = (key) => ({ 'x-admin-key': key, 'Content-Type': 'application/json' });
 
-export const getCourses = () => fetch('/api/courses').then(handle);
+//export const getCourses = () => fetch('/api/courses').then(handle);
+export const getCourses = () =>
+  fetch(`${import.meta.env.VITE_API_URL}/api/courses`).then(handle);
 export const sendEnquiry = (body) =>
   fetch('/api/enquiries', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(handle);
 
